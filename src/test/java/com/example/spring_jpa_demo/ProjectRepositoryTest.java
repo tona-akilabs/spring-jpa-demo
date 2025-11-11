@@ -1,7 +1,7 @@
 package com.example.spring_jpa_demo;
 
-import com.example.spring_jpa_demo.model.Project;
-import com.example.spring_jpa_demo.model.Task;
+import com.example.spring_jpa_demo.entities.Project;
+import com.example.spring_jpa_demo.entities.Task;
 import com.example.spring_jpa_demo.repository.ProjectRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

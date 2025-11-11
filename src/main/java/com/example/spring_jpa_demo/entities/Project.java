@@ -1,4 +1,4 @@
-package com.example.spring_jpa_demo.model;
+package com.example.spring_jpa_demo.entities;
 
 import jakarta.persistence.*;
 
