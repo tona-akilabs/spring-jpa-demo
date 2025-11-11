@@ -46,12 +46,28 @@ public class StudentRepositoryIntegrationTest {
         student.setAge(30);
         student.setGender(Gender.MALE);
         student.setBirthDate(LocalDate.of(1998, 1, 10));
-        student = studentRepository.save(student);
+        studentRepository.save(student);
 
-        student = studentRepository.findByName("Admin");
+        Student student2 = studentRepository.findByName("Admin");
 
-        assertThat(student.getId()).isNotNull();
-        assertThat(student.getName()).isEqualTo("Admin");
-        assertThat(student.getAge()).isEqualTo(30);
+        assertThat(student2.getId()).isNotNull();
+        assertThat(student2.getName()).isEqualTo("Admin");
+        assertThat(student2.getAge()).isEqualTo(30);
+    }
+
+    @Test
+    @Order(3)
+    public void delete() {
+        Student student = new Student();
+        student.setName("Admin2");
+        student.setAge(30);
+        student.setGender(Gender.MALE);
+        student.setBirthDate(LocalDate.of(1998, 1, 10));
+        studentRepository.save(student);
+
+        studentRepository.deleteById(student.getId());
+
+        Student student2 = studentRepository.findByName("Admin2");
+        assertThat(student2).isNull();
     }
 }
