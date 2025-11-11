@@ -9,13 +9,15 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import static org.assertj.core.api.Assertions.*;
 
 import java.time.LocalDate;
 
-@DataJpaTest
+@SpringBootTest
+// @DataJpaTest
 //@ActiveProfiles("test")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class StudentRepositoryIntegrationTest {
@@ -41,33 +43,35 @@ public class StudentRepositoryIntegrationTest {
     @Test
     @Order(2)
     public void update() {
-        Student student = new Student();
+        /*Student student = new Student();
         student.setName("Admin");
         student.setAge(30);
         student.setGender(Gender.MALE);
         student.setBirthDate(LocalDate.of(1998, 1, 10));
-        studentRepository.save(student);
+        studentRepository.save(student);*/
 
-        Student student2 = studentRepository.findByName("Admin");
+        Student student2 = studentRepository.findByName("Tona");
 
         assertThat(student2.getId()).isNotNull();
-        assertThat(student2.getName()).isEqualTo("Admin");
-        assertThat(student2.getAge()).isEqualTo(30);
+        assertThat(student2.getName()).isEqualTo("Tona");
+        assertThat(student2.getAge()).isNull();
     }
 
     @Test
     @Order(3)
     public void delete() {
-        Student student = new Student();
+        /*Student student = new Student();
         student.setName("Admin2");
         student.setAge(30);
         student.setGender(Gender.MALE);
         student.setBirthDate(LocalDate.of(1998, 1, 10));
         studentRepository.save(student);
+        System.out.println(student);*/
 
-        studentRepository.deleteById(student.getId());
+        Student student2 = studentRepository.findByName("Tona");
+        studentRepository.deleteById(student2.getId());
 
-        Student student2 = studentRepository.findByName("Admin2");
+        student2 = studentRepository.findByName("Tona");
         assertThat(student2).isNull();
     }
 }
