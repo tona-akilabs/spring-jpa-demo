@@ -3,6 +3,7 @@ package com.example.spring_jpa_demo.entities;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -13,8 +14,8 @@ public class Project {
     public Long id;
     public String name;
     public LocalDate creationAt;
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL, orphanRemoval = true)
-    public List<Task> tasks;
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
+    public List<Task> tasks = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -44,5 +45,10 @@ public class Project {
     }
     public void setTasks(List<Task> tasks) {
         this.tasks = tasks;
+    }
+
+    public void addTask(Task task) {
+        tasks.add(task);
+        task.setProject(this);
     }
 }
