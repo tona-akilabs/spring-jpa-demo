@@ -80,7 +80,8 @@ public class ProjectRepositoryTest {
     @Order(4)
     void testRead3Project() {
         var result = entityManager
-                .createQuery("SELECT p FROM Project p WHERE p.name='Test Project'", Project.class)
+                .createQuery("SELECT p FROM Project p WHERE p.name = :name", Project.class)
+                .setParameter("name", "Test Project")
                 .getSingleResult();
         Assertions.assertNotNull(result.getId());
     }
